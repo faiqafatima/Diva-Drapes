@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbox</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="index.html">
+                <img src="LOGO.png" alt="Diva Drapes Logo" width="40" height="40" class="d-inline-block align-text-top me-2">
+                Diva Drapes
+            </a>
+        </div>
+    </nav>
+    <div class="chatbox">
+        <h2>Live Chat</h2>
+        <div class="chat-messages" id="chat-messages">
+            <!-- Example Messages -->
+            <div class="message other-message">Hello! How can I help you?</div>
+        </div>
+        <div class="chat-input d-flex">
+            <input type="text" id="chat-input" class="form-control me-2" placeholder="Type a message...">
+            <button onclick="sendMessage()" class="btn">Send</button>
+        </div>
+    </div>
+    <footer>
+        <div class="container py-4">
+            <p>&copy; 2025 Diva Drapes. All rights reserved.</p>
+        </div>
+    </footer>
+    <script>
+        function sendMessage() {
+            let input = document.getElementById("chat-input");
+            let messages = document.getElementById("chat-messages");
+
+            if (input.value.trim() !== "") {
+                // Create user message
+                let userMessage = document.createElement("div");
+                userMessage.classList.add("message", "user-message");
+                userMessage.textContent = input.value;
+                messages.appendChild(userMessage);
+
+                // Clear input
+                input.value = "";
+
+                // Scroll to bottom
+                messages.scrollTop = messages.scrollHeight;
+
+                // Simulate a reply after 1 second
+                setTimeout(() => {
+                    let replyMessage = document.createElement("div");
+                    replyMessage.classList.add("message", "other-message");
+                    replyMessage.textContent = "Thank you for your message! We'll get back to you shortly.";
+                    messages.appendChild(replyMessage);
+
+                    // Scroll to bottom again
+                    messages.scrollTop = messages.scrollHeight;
+                }, 1000);
+            } else {
+                alert("Please type a message before sending.");
+            }
+        }
+    </script>
+</body>
+</html>
